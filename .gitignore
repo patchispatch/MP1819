@@ -32,4 +32,5 @@
 *.app
 
 # Personales
-.pdf
+*.pdf
+*.zip
