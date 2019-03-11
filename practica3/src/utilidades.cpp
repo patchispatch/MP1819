@@ -37,23 +37,40 @@ void mostrarContenido(Valor const coleccion[], int util){
 
 int combinarSuma(Valor const array1[], int util1, Valor const array2[], int util2, Valor resultado[])	{
     int tam_resultado = 0;
-    bool encontrado=false;
+    bool encontrado;
     for(int i=0; i< util1; i++)   {
         resultado[tam_resultado]=array1[i];
         tam_resultado++;
     }
     for(int i=0;  i<util2; i++) {
-        for(int j=0; j<tam_resultado && !encontrado; j++)    {
-            if(array2[i].fila == resultado[j].fila && array2[i].columna == resultado[j].columna) {
-                resultado[j].valor += array2[i].valor; 
-                encontrado=true;
-            }
-        }
-        if(!encontrado) {
+        
+        int indice1 = busquedaSecuencial(resultado, tam_resultado, array2[i]);
+        
+        if(indice1 == -1) {
             resultado[tam_resultado]=array2[i];
             tam_resultado++;
         }
-        encontrado=false;
+        else {
+            resultado[indice1].valor += array2[i].valor;   
+        }
     }
     return tam_resultado;
+}
+
+int busquedaSecuencial(Valor const array[], int util, Valor const & val) {
+    int indice;
+    bool encontrado;
+    
+    for(int i = 0; i < util && !encontrado; i++) {
+        encontrado = false;
+        if(array[i].fila == val.fila && array[i].columna == val.columna) {
+            indice = i;
+            encontrado = true;
+        }  
+    }
+    
+    if(!encontrado)
+        indice = -1;
+    
+    return indice;
 }

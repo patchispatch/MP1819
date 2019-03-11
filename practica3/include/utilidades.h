@@ -33,4 +33,6 @@ void mostrarContenido( Valor const coleccion[], int util);
  * @return el numero de componentes del vector resultado
  */
 int combinarSuma(Valor const [], int , Valor const [], int , Valor []);
+
+int busquedaSecuencial(Valor const array[], int util, Valor const & val);
 #endif //UTILIDADES_H
