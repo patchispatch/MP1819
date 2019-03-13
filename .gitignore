@@ -34,3 +34,6 @@
 # Personales
 *.pdf
 *.zip
+/P3/practica3/build/
+/practica3/build/
+/practica3/dist/
