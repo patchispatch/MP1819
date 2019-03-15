@@ -35,13 +35,20 @@ void imprimirArray(const double array[],int util_array){
     cout<<endl;
 }
 
-void  mezclarUnico(double [], int ,  double [], int , double [], int  ){
-
+void  mezclarUnico(double const array1[], int util1,  double const array2[], int util2, double resultado[], int & utilR){
+    // Primero concatenamos los dos arrays:
+    utilR = concatenar(array1, util1, array2, util2, resultado);
+    
+    // Después, eliminamos valores repetidos:
+    unico(resultado, utilR);
+    
+    // Por último, ordenamos el resultado:
+    ordenar(resultado, utilR, true);
 }
 
 void ordenar(double array[], int num, bool asc){
     // Variable auxiliar para los intercambios:
-    int aux;
+    double aux;
 
     // Si asc es true, orden ascendente:
     if(asc) {
@@ -71,11 +78,41 @@ void ordenar(double array[], int num, bool asc){
         } 
     }
 }
-void unico (double array1[], int utilArray1){
-    
+
+void unico (double array1[], int & utilArray1){
+    for(int i = 0; i < utilArray1; i++) {
+        for(int j = i + 1; j < utilArray1; j++) {
+            if(array1[i] == array1[j]) {
+                cout << "Antes de eliminar" << endl;
+                eliminar(array1, utilArray1, j);
+                imprimirArray(array1, utilArray1);
+            }
+        }
+    }
 }
 
-void concatenar( double [], int ,  double [], int , double [], int ){
+int concatenar(double const array1[], int util1,  double const array2[], int util2, double resultado[]){
+    int utilR = util1 + util2;
     
+    // Copiamos array1 en resultado:
+    for(int i = 0; i < util1; ++i) {
+        resultado[i] = array1[i];
+    }
+    
+    // Copiamos array2 en resultado a continuación:
+    for(int i = util1; i < utilR; ++i) {
+        resultado[i] = array2[i - util1];
+    }
+    
+    return utilR;
+}
+
+void eliminar(double array[], int & utilArray, int pos){
+    
+    --utilArray;
+    
+    for(int i = pos; i < utilArray; ++i) {
+        array[i] = array[i+1];
+    }
 }
 

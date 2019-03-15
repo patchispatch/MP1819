@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Alumno1: Padial Vázquez, Aarón
+// Alumno 2: Ocaña Valenzuela, Juan
 
 /* 
  * File:   utilidades.h
@@ -37,7 +34,7 @@ void imprimirArray(const double array[],int util_array);
  * @param util_salida de salida
  * @pre los dos arrays deben estar ordenados
  */
-void  mezclarUnico(double [], int ,  double [], int , double [], int  );
+void  mezclarUnico(double const array1[], int util1,  double const array2[], int util2, double resultado[], int & utilR);
 /**
  * @brief un método de ordenacion que reciba 
  * @param array vecotr de double
@@ -51,7 +48,7 @@ void ordenar(double array[], int num, bool asc);
  * @param array1 vector de entrada/salida 
  * @param utilArray1 numero de componentes actuales de salida
  */
-void unico (double [], int );
+void unico (double array1[], int & utilArray1);
 
 /**
  * @brief concatena en un tercer vector  el contenido de dos arrays
@@ -62,8 +59,15 @@ void unico (double [], int );
  * @param arraySalida vector de salida
  * @param util_salida numero de componentes de vector arraySalida,  de salida
  */
-void concatenar( double [], int ,  double [], int , double [], int );
+int concatenar(double const array1[], int util1,  double const array2[], int util2, double resultado[]);
 
+/**
+ * @brief elimina un valor del vector
+ * @param array vector de entrada
+ * @param utilArray número de componentes del vector de entrada
+ * @param pos posición a eliminar
+ */
+void eliminar(double array[], int & utilArray, int pos);
 
 #endif /* UTILIDADES_H */
 

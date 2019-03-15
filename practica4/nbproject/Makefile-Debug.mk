@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica4: ${OBJECTFILES}
 ${OBJECTDIR}/src/ejercicio1.o: src/ejercicio1.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/ejercicio1.o src/ejercicio1.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/ejercicio1.o src/ejercicio1.cpp
 
 ${OBJECTDIR}/src/utilidades.o: src/utilidades.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/utilidades.o src/utilidades.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/utilidades.o src/utilidades.cpp
 
 # Subprojects
 .build-subprojects:
