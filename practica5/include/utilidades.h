@@ -80,5 +80,23 @@ int concatenar(double const array1[], int util1,  double const array2[], int uti
  */
 void eliminar(double array[], int & utilArray, int pos);
 
+/**
+ * @brief localiza una subcadena dentro de otra. Si no la encuentra, devuelve -1.
+ * @param cadena cadena 1
+ * @param subcadena cadena 0
+ * @return posición inicial de subcadena
+ */
+int localizarSubcadena(char cadena[], char subcadena[]);
+
+/**
+ * @brief inserta una cadena en una posición de otra
+ * @param cadenaBase cadena original
+ * @param aInsertar cadena a insertar
+ * @param posicion posición
+ * @param resultado cadena resultado
+ * @return inserción correcta
+ */
+bool insertarCadena(char cadenaBase[], char aInsertar[], int posicion, char resultado[]);
+
 #endif /* UTILIDADES_H */
 

@@ -13,7 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>src/ejercicio1.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
       <itemPath>src/utilidades.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -32,7 +32,7 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>GNU|GNU</compilerSet>
+        <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -44,9 +44,16 @@
           </incDir>
         </ccTool>
       </compileType>
-      <item path="include/utilidades.h" ex="false" tool="3" flavor2="0">
+      <folder path="HeaderFiles">
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <item path="include/utilidades.h" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/ejercicio1.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/utilidades.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -63,6 +70,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -71,9 +79,9 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="include/utilidades.h" ex="false" tool="3" flavor2="0">
+      <item path="include/utilidades.h" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/ejercicio1.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/utilidades.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -1,7 +1,8 @@
 /**
  * Fichero de implementacion de las funciones que se piden
  */
-#include <iostream> 
+#include <iostream>
+#include <cstring>
 #include "utilidades.h"
 using namespace std;
 
@@ -11,7 +12,7 @@ using namespace std;
  * @param util_array
  */
 void leer(double array[], int &util_array){
-    cout << "Cuantos: ";
+    cout << "Cuantos: ";    
     cin >> util_array;
     for(int i=0; i<util_array; ++i)
     {
@@ -33,6 +34,16 @@ void imprimirArray(const double array[],int util_array){
         cout<<array[i]<<" ";
     }
     cout<<endl;
+}
+
+double * reservar(int tam) {
+    double * arr = new double[tam];
+    return arr;
+}
+
+void liberar(double * ptr) {
+    delete [] ptr;
+    ptr = nullptr;
 }
 
 void  mezclarUnico_old(double const array1[], int util1,  double const array2[], int util2, double resultado[], int & utilR){
@@ -154,5 +165,61 @@ void eliminar(double array[], int & utilArray, int pos){
     for(int i = pos; i < utilArray; ++i) {
         array[i] = array[i+1];
     }
+}
+
+int localizarSubcadena(char cadena[], char subcadena[]) {
+    int i = 0;
+    int j;
+    int k;
+    bool encontrado = false;
+ 
+    while((cadena[i] != '\0') && !encontrado){
+        j = 0;
+        k = i;
+
+        while((cadena[k] == subcadena[j]) && (subcadena[j] != '\0')){
+            ++k;
+            ++j;
+        }
+        
+        if(subcadena[j] == '\0')
+            encontrado = true;
+        else
+            ++i;
+    }
+    
+    if(!encontrado)
+        i = -1;
+    
+    return(i);
+}
+
+bool insertarCadena(char cadenaBase[], char aInsertar[], int posicion, char resultado[]) {
+    int i;
+    bool posible = true;
+    
+    if(posicion >= strlen(cadenaBase)) {
+        posible = false;
+    }
+    else {
+        // Copiamos de la cadena base hasta la posición indicada:
+        for(i = 0; i < posicion; ++i) {
+        resultado[i] = cadenaBase[i];
+        }
+        
+        // Copiamos la cadena a insertar, salvo el \0:
+        for(int j = 0; aInsertar[j] != '\0'; ++j, ++posicion) {
+            resultado[posicion] = aInsertar[j];
+        }
+        
+        // Copiamos el resto de la cadena base:
+        for(; cadenaBase[i] != '\0'; ++i, ++posicion) {
+            resultado[posicion] = cadenaBase[i];
+        }
+        
+        resultado[posicion] = '\0';
+    }
+    
+    return posible;
 }
 

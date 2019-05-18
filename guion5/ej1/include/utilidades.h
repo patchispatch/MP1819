@@ -25,6 +25,17 @@ void leer(double array[], int &util_array);
 */
 void imprimirArray(const double array[],int util_array);
 /**
+ * @brief Reserva un vector dinámico de tamaño tam
+ * @param tam tamaño
+ * @return puntero al vector
+ */
+double * reservar(int tam);
+/**
+ * @brief Libera la memoria dedicada a un vector
+ * @param ptr puntero al vector
+ */
+void liberar(void * ptr);
+/**
  * @brief Realiza una mezcla sin introducir elementos comunes en arraySalida
  * @param array1 vector de entrada
  * @param utilArray1
@@ -79,6 +90,24 @@ int concatenar(double const array1[], int util1,  double const array2[], int uti
  * @param pos posición a eliminar
  */
 void eliminar(double array[], int & utilArray, int pos);
+
+/**
+ * @brief localiza una subcadena dentro de otra. Si no la encuentra, devuelve -1.
+ * @param cadena cadena 1
+ * @param subcadena cadena 0
+ * @return posición inicial de subcadena
+ */
+int localizarSubcadena(char cadena[], char subcadena[]);
+
+/**
+ * @brief inserta una cadena en una posición de otra
+ * @param cadenaBase cadena original
+ * @param aInsertar cadena a insertar
+ * @param posicion posición
+ * @param resultado cadena resultado
+ * @return inserción correcta
+ */
+bool insertarCadena(char cadenaBase[], char aInsertar[], int posicion, char resultado[]);
 
 #endif /* UTILIDADES_H */
 

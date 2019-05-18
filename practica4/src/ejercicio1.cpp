@@ -28,8 +28,8 @@ int main()
     
     leer(arrayL1,utilArrayL1);
     leer(arrayL2,utilArrayL2);
-    mezclarUnico(arrayL1,utilArrayL1,arrayL2,utilArrayL2, arraySalida, utilArraySalida);
-    imprimirArray(arraySalida, utilArraySalida);
+    unico(arrayL1,utilArrayL1);
+    imprimirArray(arrayL1, utilArrayL1);
 
 }
 
