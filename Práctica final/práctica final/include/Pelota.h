@@ -4,7 +4,7 @@
 //          AARÓN PADIAL VÁZQUEZ
 //
 // Pelota.h
-// Definición de la clase Pelota y funciones relacionadas.
+// Definición de la clase Pelota y funciones asociadas.
 // ****************************************************************************
 
 #ifndef PELOTA_H

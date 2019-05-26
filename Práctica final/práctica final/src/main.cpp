@@ -1,6 +1,7 @@
 // **********************************************
 // METODOLOGÍA DE LA PROGRAMACIÓN
-// AUTOR: JUAN OCAÑA VALENZUELA
+// AUTORES: JUAN OCAÑA VALENZUELA
+//          AARÓN PADIAL VÁZQUEZ
 //
 // main.cpp
 // Programa principal.

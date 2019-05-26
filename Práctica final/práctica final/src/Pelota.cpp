@@ -1,3 +1,13 @@
+// **********************************************
+// METODOLOGÍA DE LA PROGRAMACIÓN
+// AUTORES: JUAN OCAÑA VALENZUELA
+//          AARÓN PADIAL VÁZQUEZ
+//
+// Pelotas.cpp
+// Implementación de la clase pelota y funciones asociadas.
+// **********************************************
+
+
 
 #include<cstdlib>
 #include<cmath>

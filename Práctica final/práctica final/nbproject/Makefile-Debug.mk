@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/Pelota.o \
+	${OBJECTDIR}/src/Pelotas.o \
 	${OBJECTDIR}/src/main.o \
 	${OBJECTDIR}/src/miniwin.o
 
@@ -68,6 +69,11 @@ ${OBJECTDIR}/src/Pelota.o: src/Pelota.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Pelota.o src/Pelota.cpp
+
+${OBJECTDIR}/src/Pelotas.o: src/Pelotas.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Pelotas.o src/Pelotas.cpp
 
 ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
