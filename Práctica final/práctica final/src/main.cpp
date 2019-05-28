@@ -8,15 +8,16 @@
 // **********************************************
 
 #include "miniwin.h"
-#include "Pelota.h"
+#include "Pelotas.h"
 using namespace miniwin;
 
 int main() {
     vredimensiona(800, 600);
 
     // Pelotas:
+    Pelotas * p = new Pelotas();
     Pelota * p1 = new Pelota();
-    Pelota * p2 = new Pelota(32, 35, PColor::VERDE, 15.0);
+    Pelota * p2 = new Pelota(32, 35, PColor::VERDE);
 
     // Bucle de pintado:
     while (tecla() != ESCAPE) {

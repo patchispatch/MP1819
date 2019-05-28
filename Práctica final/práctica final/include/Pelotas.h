@@ -12,6 +12,7 @@
 
 #include "Pelota.h"
 #include <cstring>
+#include <stdexcept>
 
 class Pelotas {
 private:
@@ -20,7 +21,7 @@ private:
     int util;
 
 public:
-    Pelotas(int c); 
+    Pelotas(); 
     Pelotas(const Pelotas &otro); 
     ~Pelotas(); 
 
@@ -32,16 +33,15 @@ public:
     Pelota obtener(int i);
 
     Pelotas & operator=(Pelotas &otro);
-    Pelotas & operator+=(Pelotas &otro);//
+    Pelotas & operator+=(Pelota &p);
 
     Pelota & operator[](int i);
     Pelota operator[](int i) const;
-    
+
 private:
-    Pelota * reservar(int c);
     void redimensionar();
     void liberar();
-}
+};
 
 #endif /* PELOTAS_H */
 

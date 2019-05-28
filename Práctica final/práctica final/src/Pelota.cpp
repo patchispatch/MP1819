@@ -33,7 +33,7 @@ Pelota::Pelota(float nx, float ny) {
     radio = MAX_RADIO;
 }
 
-Pelota::Pelota(float nx=34, float ny=34, PColor nc=PColor::ROJO, float r=MAX_RADIO) {
+Pelota::Pelota(float nx, float ny, PColor nc, float r) {
     x = nx;
     y = ny;
     dx = MAX_VEL;
@@ -78,7 +78,7 @@ bool Pelota::operator==(const Pelota &otro) {
 }
 
 bool Pelota::operator!=(const Pelota &otro) {
-    return !(this == otro);
+    return !(*this == otro);
 }
 
 void mover(Pelota &p) {

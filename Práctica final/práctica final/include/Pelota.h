@@ -22,7 +22,7 @@ private:
 public:
     Pelota();
     Pelota(float nx, float ny);
-    Pelota(float nx, float ny, PColor nc, float radio);
+    Pelota(float nx=34, float ny=34, PColor nc=PColor::ROJO, float r=MAX_RADIO);
     Pelota(const Pelota& orig);
     
     void setX(float nx) {x = nx;}

@@ -10,24 +10,15 @@
 #include "Pelotas.h"
 
 // Crea un objeto Pelotas con capacidad = c:
-Pelotas::Pelotas(int c) {
-    // Primero reservamos el espacio:
-    v = reservar(c);
-
-    // Actualizamos la capacidad:
-    capacidad = c;
-
-    // Inicializamos util a 0:
+Pelotas::Pelotas() {
+    v = nullptr;
+    capacidad = 0;
     util = 0;
 }
 
 Pelotas::Pelotas(const Pelotas &otro) {
-    // Copiamos el array:
-    Pelota * aux = reservar(otro.capacidad);
-    memcpy(aux, otro.v, otro.capacidad * sizeof(Pelota));
-
-    // Asignamos el puntero:
-    v = aux;
+    
+    *this = otro;
 }
 
 Pelotas::~Pelotas() {
@@ -46,7 +37,7 @@ void Pelotas::aniadir(Pelota &p) {
 }
 
 void Pelotas::borrar(int b) {
-    if(i < util) {
+    if(b < util) {
         // Copiar todo menos el elemento a borrar:
         for(int i = 0; i < util-1; ++i) {
             if(i >= b) {
@@ -57,26 +48,23 @@ void Pelotas::borrar(int b) {
         --util; 
     }
     else {
-        throw out_of_range("Index out of bounds.");
+        throw std::out_of_range("Index out of bounds.");
     }
 }
 
-Pelota * Pelotas::reservar(int c) {
-    Pelota * aux = new Pelota[c];
-
-    return aux;
-}
-
-void Pelota::redimensionar() {
+void Pelotas::redimensionar() {
     // Reservar array auxiliar:
-    Pelota * aux = reservar(capacidad + 1);
+    Pelota * aux = new Pelota[capacidad + 1];
 
-    // Copiar datos:
-    memcpy(aux, v, capacidad * sizeof(Pelota));
+    
+    if(v != nullptr) {
+        // Copiar datos:
+        memcpy(aux, v, capacidad * sizeof(Pelota));
 
-    // Liberar antiguo:
-    liberar();
-
+        // Liberar antiguo:
+        liberar();
+    }
+    
     // Asignar el nuevo:
     v = aux;
 
@@ -100,16 +88,20 @@ Pelotas & Pelotas::operator=(Pelotas &otro) {
 
     // Asignar el nuevo:
     v = aux;
+
+    return *this;
 }
 
 Pelotas & Pelotas::operator+=(Pelota &p) {
     aniadir(p);
+
+    return *this;
 }
 
 Pelota & Pelotas::operator[](int i) {
     
     if (i < 0 || i >= util) {
-        throw out_of_range("Indice fuera de rango en acceso con []");
+        throw std::out_of_range("Indice fuera de rango en acceso con []");
     }
 
     return v[i];
