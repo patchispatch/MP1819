@@ -44,11 +44,7 @@ Pelota::Pelota(float nx=34, float ny=34, PColor nc=PColor::ROJO, float r=MAX_RAD
 
 
 Pelota::Pelota(const Pelota& orig) {
-    x = orig.x;
-    y = orig.y;
-    dx = orig.dx;
-    dy = orig.dy;
-    color = orig.color;
+   *this = orig;
 }
 
 float Pelota::distancia(const Pelota &otro) {
@@ -65,6 +61,24 @@ bool Pelota::colisionado(const Pelota &otro) {
     }
 
     return r;
+}
+
+const Pelota & Pelota::operator=(const Pelota &orig) {
+    x = orig.x;
+    y = orig.y;
+    dx = orig.dx;
+    dy = orig.dy;
+    color = orig.color;
+
+    return *this;  
+}
+
+bool Pelota::operator==(const Pelota &otro) {
+    return (color == otro.color && radio == otro.radio);
+}
+
+bool Pelota::operator!=(const Pelota &otro) {
+    return !(this == otro);
 }
 
 void mover(Pelota &p) {
@@ -93,6 +107,8 @@ void pintar(const Pelota &p) {
    miniwin::color((int) p.getColor());
    miniwin::circulo_lleno(p.getX(), p.getY(), p.getRadio());
 }
+
+
 
 
 
