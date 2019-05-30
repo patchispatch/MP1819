@@ -17,8 +17,20 @@ Pelotas::Pelotas() {
 }
 
 Pelotas::Pelotas(const Pelotas &otro) {
-    
-    *this = otro;
+    // Reservar array auxiliar:
+    Pelota * aux = new Pelota[otro.capacidad];
+
+    // Copiar datos:
+    memcpy(aux, otro.v, otro.capacidad * sizeof(Pelota));
+
+    // Liberar antiguo:
+    liberar();
+
+    // Asignar el nuevo:
+    v = aux;
+
+    capacidad = otro.capacidad;
+    util = otro.util;
 }
 
 Pelotas::~Pelotas() {
@@ -77,17 +89,8 @@ void Pelotas::liberar() {
 }
 
 Pelotas & Pelotas::operator=(Pelotas &otro) {
-    // Reservar array auxiliar:
-    Pelota * aux = reservar(otro.capacidad);
-
-    // Copiar datos:
-    memcpy(aux, otro.v, otro.capacidad * sizeof(Pelota));
-
-    // Liberar antiguo:
-    liberar();
-
-    // Asignar el nuevo:
-    v = aux;
+    if (this != &otro)
+        *this = otro;
 
     return *this;
 }
@@ -98,17 +101,19 @@ Pelotas & Pelotas::operator+=(Pelota &p) {
     return *this;
 }
 
-Pelota & Pelotas::operator[](int i) {
+Pelota & Pelotas::operator[](const int i) {
     
     if (i < 0 || i >= util) {
         throw std::out_of_range("Indice fuera de rango en acceso con []");
     }
-
-    return v[i];
+    else
+        return v[i];
 }
 
-Pelota Pelotas::operator[](int i) const {
-    return v[i];
+Pelota Pelotas::operator[](const int i) const {
+    if (i < 0 || i >= util) {
+        throw std::out_of_range("Indice fuera de rango en acceso con []");
+    }
+    else
+        return v[i];
 }
-
-

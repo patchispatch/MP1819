@@ -33,7 +33,7 @@ Pelota::Pelota(float nx, float ny) {
     radio = MAX_RADIO;
 }
 
-Pelota::Pelota(float nx, float ny, PColor nc, float r) {
+Pelota::Pelota(float nx, float ny, float r, PColor nc) {
     x = nx;
     y = ny;
     dx = MAX_VEL;
@@ -84,7 +84,6 @@ bool Pelota::operator!=(const Pelota &otro) {
 void mover(Pelota &p) {
     p.setX(p.getX() + p.getDX());
     p.setY(p.getY() + p.getDY());
-    
     if (p.getX() > miniwin::vancho() - p.getRadio()) {
         p.setDX(-p.getDX() * FACTOR);
         p.setX(miniwin::vancho() - p.getRadio());
@@ -103,12 +102,7 @@ void mover(Pelota &p) {
    }
 }
 
-void pintar(const Pelota &p) {
+void pintar (const Pelota &p) {
    miniwin::color((int) p.getColor());
    miniwin::circulo_lleno(p.getX(), p.getY(), p.getRadio());
 }
-
-
-
-
-

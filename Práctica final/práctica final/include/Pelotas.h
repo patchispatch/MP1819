@@ -35,8 +35,8 @@ public:
     Pelotas & operator=(Pelotas &otro);
     Pelotas & operator+=(Pelota &p);
 
-    Pelota & operator[](int i);
-    Pelota operator[](int i) const;
+    Pelota & operator[](const int i);
+    Pelota operator[](const int i) const;
 
 private:
     void redimensionar();
