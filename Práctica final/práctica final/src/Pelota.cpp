@@ -42,6 +42,15 @@ Pelota::Pelota(float nx, float ny, float r, PColor nc) {
     radio = r;
 }
 
+Pelota::Pelota(float nx, float ny, float vx, float vy, float r, PColor nc) {
+    x = nx;
+    y = ny;
+    dx = vx;
+    dy = vy;
+    color = nc;
+    radio = r;
+}
+
 
 Pelota::Pelota(const Pelota& orig) {
    *this = orig;

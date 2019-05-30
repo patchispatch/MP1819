@@ -60,7 +60,7 @@ void Pelotas::borrar(int b) {
         --util; 
     }
     else {
-        throw std::out_of_range("Index out of bounds.");
+        throw out_of_range("Index out of bounds.");
     }
 }
 
@@ -104,7 +104,7 @@ Pelotas & Pelotas::operator+=(Pelota &p) {
 Pelota & Pelotas::operator[](const int i) {
     
     if (i < 0 || i >= util) {
-        throw std::out_of_range("Indice fuera de rango en acceso con []");
+        throw out_of_range("Indice fuera de rango en acceso con []");
     }
     else
         return v[i];
@@ -112,8 +112,45 @@ Pelota & Pelotas::operator[](const int i) {
 
 Pelota Pelotas::operator[](const int i) const {
     if (i < 0 || i >= util) {
-        throw std::out_of_range("Indice fuera de rango en acceso con []");
+        throw out_of_range("Indice fuera de rango en acceso con []");
     }
     else
         return v[i];
 }
+
+ifstream &operator>>(ifstream &fi, Pelotas &p)  { 
+        int contador;
+        fi >> contador;
+        for(int i = 0; i < contador; i++)   {
+            float nx, ny, vx, vy, r;
+            PColor nc;
+            string color;
+            fi >> nx >> ny >> vx >> vy >> r >> color;
+
+            if (color == "NEGRO") 
+                nc = PColor::NEGRO;
+            else if (color == "ROJO")
+                nc = PColor::ROJO;
+            else if (color == "VERDE")
+                nc = PColor::VERDE;
+            else if (color == "AZUL")
+                nc = PColor::AZUL;
+            else if (color == "AMARILLO")
+                nc = PColor::AMARILLO;
+            else if (color == "MAGENTA")
+                nc = PColor::MAGENTA;
+            else if (color == "CYAN")
+                nc = PColor::CYAN;
+            else if (color == "BLANCO")
+                nc = PColor::BLANCO;
+            else {
+                cerr << "Color mal" << endl;
+                exit(1);
+            }
+            
+            Pelota * pel = new Pelota(nx, ny, vx, vy, r, nc);
+
+            p.aniadir(*pel);
+        }
+        return fi;            
+    }

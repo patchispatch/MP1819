@@ -11,9 +11,13 @@
 #define PELOTAS_H
 
 #include "Pelota.h"
+#include <iostream>
 #include <cstring>
 #include <stdexcept>
-
+#include <fstream>
+#include <string>
+#include <ctype.h>
+using namespace std;
 class Pelotas {
 private:
     Pelota * v;
@@ -37,6 +41,8 @@ public:
 
     Pelota & operator[](const int i);
     Pelota operator[](const int i) const;
+
+    friend ifstream &operator>>(ifstream &fi, Pelotas &p);
 
 private:
     void redimensionar();

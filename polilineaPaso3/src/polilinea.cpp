@@ -1,5 +1,6 @@
 
 #include "polilinea.h"
+#include <unordered_set>
 
 using namespace std;
 
@@ -10,7 +11,14 @@ using namespace std;
  * @param espacioAlmacenamiento espacio de almacenamiento a reservar
  */
 Polilinea::Polilinea(int espacioAlmacenamiento, double x, double y) {
-  // A RELLENAR ...............................
+  puntos = reservarEspacio(espacioAlmacenamiento);
+  espacioReservado = espacioAlmacenamiento;
+  numeroVertices = 0;
+
+  for(int i = 0; i < espacioAlmacenamiento; ++i) {
+    asignarVertice(i, x, y);
+    ++numeroVertices;
+  }
 }
 
 /**
@@ -20,10 +28,10 @@ Polilinea::Polilinea(int espacioAlmacenamiento, double x, double y) {
 Polilinea::Polilinea(const Polilinea & otra){
     // se asignan valores de datos miembro
     numeroVertices=otra.numeroVertices;
-    
+
     // se reserva espacio de memoria
     puntos=reservarEspacio(otra.espacioReservado);
-    
+
     // se asignan los datos de los puntos
     for(int i=0; i < numeroVertices; i++){
         puntos[i].asignarX(otra.puntos[i].obtenerX());
@@ -46,14 +54,14 @@ Polilinea::~Polilinea() {
  */
 Punto * Polilinea::reservarEspacio(int dimension) {
     Punto *espacio=0;
-    
+
     if(dimension != 0){
        // se reserva el espacio deseado
        espacio = new Punto[dimension];
 
        // se asigna valor al dato miembro espacioReservado
        espacioReservado = dimension;
-    }   
+    }
 
     // se devuelve el espacio
     return espacio;
@@ -64,7 +72,7 @@ Punto * Polilinea::reservarEspacio(int dimension) {
  * el vertice cuyas coordenadas se pasan como argumento
  * @param x
  * @param y
- * @return 
+ * @return
  */
 int Polilinea::buscarVertice(double x, double y) const {
     int posicion = -1;
@@ -110,7 +118,7 @@ void Polilinea::mostrar() const {
  * determinado indice. En caso de no tratarse de un indice
  * valido se genera una excepcion
  * @param indice
- * @return 
+ * @return
  */
 Punto Polilinea::obtenerVertice(int indice) const {
     // si el indice no es valido se lanza excepcion
@@ -128,7 +136,7 @@ Punto Polilinea::obtenerVertice(int indice) const {
  * @param indice
  * @param x
  * @param y
- * @return 
+ * @return
  */
 bool Polilinea::asignarVertice(int indice, double x, double y) {
     // si el indice no es valido, se devuelve false
@@ -146,11 +154,11 @@ bool Polilinea::asignarVertice(int indice, double x, double y) {
             // se asigna el objeto correspondiente
             puntos[indice].asignarX(x);
             puntos[indice].asignarY(y);
-            
+
             if(indice >= numeroVertices){
                 numeroVertices=indice+1;
             }
-        } 
+        }
         else {
             // hay que reserva espacio necesario para contener
             // el indice: se asignan mas espacios de los
@@ -187,12 +195,12 @@ bool Polilinea::asignarVertice(int indice, double x, double y) {
  * Metodo para insertar un vertice en una determinada
  * posicion. Esto obligara a desplazar todos los vertices
  * a partir de la posicion de insercion. Este metodo solo
- * es valido si la posicion de insercion es menor o igual 
+ * es valido si la posicion de insercion es menor o igual
  * que el numero de vertices almacenados
  * @param indice
  * @param x
  * @param y
- * @return 
+ * @return
  */
 bool Polilinea::insertarVertice(int indice, double x, double y) {
     // si el indice no es valido, se devuelve false
@@ -256,7 +264,7 @@ bool Polilinea::insertarVertice(int indice, double x, double y) {
  * Metodo para borrar un vertice dado un indice. Solo tiene sentido
  * con valores de indice mayores que 0 y menores de numeroVertices
  * @param indice
- * @return 
+ * @return
  */
 bool Polilinea::borrarVertice(int indice) {
     bool resultado = false;
@@ -265,7 +273,7 @@ bool Polilinea::borrarVertice(int indice) {
     if (indice >= 0 && indice < numeroVertices) {
         // se hace que resultado valga true
         resultado=true;
-        
+
         // no se modifica el espacio de memoria. Se copian los
         // datos desde indice+1 hasta el final
         for (int i = indice; i < numeroVertices - 1; i++) {
@@ -312,10 +320,22 @@ Polilinea * Polilinea::unionOp(const Polilinea & otra) const {
 
 /**
  * Metodo para devolver una polilinea con los vertices
- * interseccion de this y otra. En el objeto resultante 
+ * interseccion de this y otra. En el objeto resultante
  * no debe haber puntos repetidos
  * @param otra
  */
 Polilinea * Polilinea::interseccionOp(const Polilinea & otra) const {
-  // A RELLENAR ...............................
+    // Copiamos otra en el resultado:
+    Polilinea resultado = new Polilinea(this);
+
+    // Guardamos los puntos de A en una tabla hash:
+    unordered_set<Punto> puntos_a(this.puntos)
+
+    for (int i = 0; i < sizeB; ++i) {
+      if (puntos_a.find(otra.puntos[i]) != puntos_a.end()) {
+          resultado.asignarVertice(otra.numeroVertices, otra.puntos[i].obtenerX, otra.puntos[i].obtenerY);
+      }
+    }
+
+    return resultado;
 }
