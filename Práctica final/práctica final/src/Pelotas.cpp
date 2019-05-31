@@ -147,40 +147,77 @@ void Pelotas::comprobarColisiones() {
 }
 
 istream &operator>>(istream &fi, Pelotas &p)  { 
-        int contador;
-        
-        fi >> contador;
+    int contador;
+    
+    fi >> contador;
 
-        cout << contador << endl;
-        for(int i = 0; i < contador; i++)   {
-            float nx, ny, vx, vy, r;
-            PColor nc;
-            string color;
-            fi >> nx >> ny >> vx >> vy >> r >> color;
+    cout << contador << endl;
+    for(int i = 0; i < contador; i++)   {
+        float nx, ny, vx, vy, r;
+        PColor nc;
+        string color;
+        fi >> nx >> ny >> vx >> vy >> r >> color;
 
-            if (color == "NEGRO") 
-                nc = PColor::NEGRO;
-            else if (color == "ROJO")
-                nc = PColor::ROJO;
-            else if (color == "VERDE")
-                nc = PColor::VERDE;
-            else if (color == "AZUL")
-                nc = PColor::AZUL;
-            else if (color == "AMARILLO")
-                nc = PColor::AMARILLO;
-            else if (color == "MAGENTA")
-                nc = PColor::MAGENTA;
-            else if (color == "CYAN")
-                nc = PColor::CYAN;
-            else if (color == "BLANCO")
-                nc = PColor::BLANCO;
-            else {
-                cerr << "Color mal" << endl;
-                exit(1);
-            }
-            
-            Pelota * pel = new Pelota(nx, ny, vx, vy, r, nc);
-            p += *pel;
+        if (color == "NEGRO") 
+            nc = PColor::NEGRO;
+        else if (color == "ROJO")
+            nc = PColor::ROJO;
+        else if (color == "VERDE")
+            nc = PColor::VERDE;
+        else if (color == "AZUL")
+            nc = PColor::AZUL;
+        else if (color == "AMARILLO")
+            nc = PColor::AMARILLO;
+        else if (color == "MAGENTA")
+            nc = PColor::MAGENTA;
+        else if (color == "CYAN")
+            nc = PColor::CYAN;
+        else if (color == "BLANCO")
+            nc = PColor::BLANCO;
+        else {
+            cerr << "Color mal" << endl;
+            exit(1);
         }
-        return fi;            
+        
+        Pelota * pel = new Pelota(nx, ny, vx, vy, r, nc);
+        p += *pel;
     }
+    return fi;            
+}
+
+ostream &operator<<(ostream &fo, Pelotas &p)  { 
+    fo << p.util << endl;
+
+    for(int i = 0; i < p.util; i++)   {
+
+        fo << p[i].getX() << " " << p[i].getY() << " " << p[i].getDX() << " " 
+        << p[i].getDY() << " " << p[i].getRadio() << " " ;
+
+        string nc;
+        PColor color = p[i].getColor();
+
+        if (color == PColor::NEGRO) 
+            nc = "NEGRO";
+        else if (color == PColor::ROJO)
+            nc = "ROJO";
+        else if (color == PColor::VERDE)
+            nc = "VERDE";
+        else if (color == PColor::AZUL)
+            nc = "AZUL";
+        else if (color == PColor::AMARILLO)
+            nc = "AMARILLO";
+        else if (color == PColor::MAGENTA)
+            nc = "MAGENTA";
+        else if (color == PColor::CYAN)
+            nc = "CYAN";
+        else if (color == PColor::BLANCO)
+            nc = "BLANCO";
+        else {
+            cerr << "Color mal" << endl;
+            exit(1);
+        }
+
+        fo << nc << "\n";
+    }
+    return fo;            
+}

@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
     ifstream fi;
-
+    ofstream fo;
     fi.open("./data/pelotas.txt");
     string cabecera;
     fi >> cabecera;
@@ -43,6 +43,7 @@ int main() {
     //p.aniadir(*p1);
     //p.aniadir(*p2);
     cout << p[0].getRadio();
+    fo.open("data/salida.txt");
 
     // Bucle de pintado:
     while (tecla() != ESCAPE) {
@@ -57,9 +58,11 @@ int main() {
         espera(25);
     }
 
+    fo << cabecera << "\n" << ancho << "\n" << alto << "\n";
+    fo << p;
+
+
     // Cerrar la ventana:
     vcierra();
-
-
     return 0;
 }

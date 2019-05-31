@@ -43,6 +43,7 @@ public:
 
     void comprobarColisiones();
     friend istream &operator>>(istream &fi, Pelotas &p);
+    friend ostream &operator<<(ostream &fo, Pelotas &p);
 
 private:
     void redimensionar();
