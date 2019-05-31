@@ -41,6 +41,7 @@ public:
     Pelota & operator[](const int i);
     Pelota operator[](const int i) const;
 
+    void comprobarColisiones();
     friend istream &operator>>(istream &fi, Pelotas &p);
 
 private:

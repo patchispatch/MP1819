@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>include/Pelota.h</itemPath>
       <itemPath>include/Pelotas.h</itemPath>
+      <itemPath>include/Simulador.h</itemPath>
       <itemPath>include/definiciones.h</itemPath>
       <itemPath>include/miniwin.h</itemPath>
     </logicalFolder>
@@ -18,6 +19,7 @@
                    projectFiles="true">
       <itemPath>src/Pelota.cpp</itemPath>
       <itemPath>src/Pelotas.cpp</itemPath>
+      <itemPath>src/Simulador.cpp</itemPath>
       <itemPath>src/main.cpp</itemPath>
       <itemPath>src/miniwin.cpp</itemPath>
     </logicalFolder>
@@ -56,6 +58,8 @@
       </item>
       <item path="include/Pelotas.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Simulador.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/definiciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/miniwin.h" ex="false" tool="3" flavor2="0">
@@ -63,6 +67,8 @@
       <item path="src/Pelota.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Pelotas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Simulador.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -93,6 +99,8 @@
       </item>
       <item path="include/Pelotas.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Simulador.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/definiciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/miniwin.h" ex="false" tool="3" flavor2="0">
@@ -100,6 +108,8 @@
       <item path="src/Pelota.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Pelotas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Simulador.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -42,7 +42,7 @@ public:
     
     float distancia(const Pelota &otro);
     bool colisionado(const Pelota &otro);
-
+    void colisionar(Pelota &otro);
     const Pelota & operator=(const Pelota &otro);
     bool operator==(const Pelota &otro);
     bool operator!=(const Pelota &otro);

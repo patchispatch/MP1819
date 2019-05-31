@@ -118,6 +118,34 @@ Pelota Pelotas::operator[](const int i) const {
         return v[i];
 }
 
+void Pelotas::comprobarColisiones() {
+    for(int i=0; i<util; i++) {
+        for(int j=i+1; j<util; j++) {
+            
+            if(v[i].colisionado(v[j])) {
+                if(v[i].getColor() == v[j].getColor() && v[i].getColor() == PColor::VERDE)   {
+                    Pelota * pelotilla = new Pelota();
+                    pelotilla->setColor(PColor::VERDE);
+                    *this += *pelotilla;
+                    v[i].colisionar(v[j]);
+
+                }
+                else if(v[i].getColor() == v[j].getColor() && v[i].getColor() == PColor::ROJO) {
+                    v[i].colisionar(v[j]);
+                }
+                else {
+                    if(v[i].getColor() == PColor::VERDE) {
+                        cout << "BORRANDO" << endl;
+                        borrar(i);
+                    }
+                    else
+                        borrar(j);
+                }
+            }
+        }
+    }
+}
+
 istream &operator>>(istream &fi, Pelotas &p)  { 
         int contador;
         

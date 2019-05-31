@@ -51,16 +51,20 @@ Pelota::Pelota(float nx, float ny, float vx, float vy, float r, PColor nc) {
     color = nc;
 }
 
-
 Pelota::Pelota(const Pelota& orig) {
    *this = orig;
 }
 
 float Pelota::distancia(const Pelota &otro) {
-    float d = sqrt((x*x - otro.x*otro.x) + (y*y - otro.y*otro.y));
-    d -= (radio + otro.radio);
+    float dist;
+    float sum_x = x - otro.x;
+    float sum_y = y - otro.y;
 
-    return d;
+	dist = pow(sum_x, 2) + pow(sum_y, 2);
+	dist = sqrt(dist);
+    dist -= (radio + otro.radio);
+
+    return dist;
 }
 
 bool Pelota::colisionado(const Pelota &otro) {
@@ -68,8 +72,17 @@ bool Pelota::colisionado(const Pelota &otro) {
     if(distancia(otro) <= UMBRAL) {
         r = true;
     }
-
     return r;
+}
+
+void Pelota::colisionar(Pelota &otro) {
+    float dx_temp, dy_temp;
+    dx_temp = dx;
+    dy_temp = dy;
+    dx = otro.dx;
+    dy = otro.dy;
+    otro.dx = dx_temp;
+    otro.dy = dy_temp; 
 }
 
 const Pelota & Pelota::operator=(const Pelota &orig) {
@@ -94,6 +107,7 @@ bool Pelota::operator!=(const Pelota &otro) {
 void mover(Pelota &p) {
     p.setX(p.getX() + p.getDX());
     p.setY(p.getY() + p.getDY());
+
     if (p.getX() > miniwin::vancho() - p.getRadio()) {
         p.setDX(-p.getDX() * FACTOR);
         p.setX(miniwin::vancho() - p.getRadio());

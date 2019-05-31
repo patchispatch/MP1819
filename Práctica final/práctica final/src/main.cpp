@@ -47,10 +47,12 @@ int main() {
     // Bucle de pintado:
     while (tecla() != ESCAPE) {
         borra();
-        mover(p[0]);
-        mover(p[1]);
-        pintar(p[0]);
-        pintar(p[1]);
+        p.comprobarColisiones();
+        for(int i = 0; i < p.getUtil(); ++i) {
+            mover(p[i]);
+            pintar(p[i]);
+        }
+
         refresca();
         espera(25);
     }
@@ -61,4 +63,3 @@ int main() {
 
     return 0;
 }
-
