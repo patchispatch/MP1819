@@ -118,9 +118,12 @@ Pelota Pelotas::operator[](const int i) const {
         return v[i];
 }
 
-ifstream &operator>>(ifstream &fi, Pelotas &p)  { 
+istream &operator>>(istream &fi, Pelotas &p)  { 
         int contador;
+        
         fi >> contador;
+
+        cout << contador << endl;
         for(int i = 0; i < contador; i++)   {
             float nx, ny, vx, vy, r;
             PColor nc;
@@ -149,8 +152,7 @@ ifstream &operator>>(ifstream &fi, Pelotas &p)  {
             }
             
             Pelota * pel = new Pelota(nx, ny, vx, vy, r, nc);
-
-            p.aniadir(*pel);
+            p += *pel;
         }
         return fi;            
     }

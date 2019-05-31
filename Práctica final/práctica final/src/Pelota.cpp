@@ -47,8 +47,8 @@ Pelota::Pelota(float nx, float ny, float vx, float vy, float r, PColor nc) {
     y = ny;
     dx = vx;
     dy = vy;
-    color = nc;
     radio = r;
+    color = nc;
 }
 
 
@@ -78,6 +78,7 @@ const Pelota & Pelota::operator=(const Pelota &orig) {
     dx = orig.dx;
     dy = orig.dy;
     color = orig.color;
+    radio = orig.radio;
 
     return *this;  
 }

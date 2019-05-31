@@ -9,19 +9,10 @@
 
 #include "miniwin.h"
 #include "Pelotas.h"
+#include <fstream>
 using namespace miniwin;
 using namespace std;
 
-
-    /*
-    if (argc != 2) {
-        cerr << "Número de argumentos incorrecto." << endl;
-        return 1;
-    }
-    else {
-        fi.open(argv[1]);
-    }
-    */
 int main() {
     ifstream fi;
 
@@ -47,12 +38,11 @@ int main() {
 
     // Pelotas:
     Pelotas p = Pelotas();
-    //Pelota * p1 = new Pelota();
-    //Pelota * p2 = new Pelota(32, 35, 3, PColor::VERDE);
     fi >> p;
 
     //p.aniadir(*p1);
     //p.aniadir(*p2);
+    cout << p[0].getRadio();
 
     // Bucle de pintado:
     while (tecla() != ESCAPE) {
@@ -67,10 +57,6 @@ int main() {
 
     // Cerrar la ventana:
     vcierra();
-
-    // Liberar memoria:
-    delete p1;
-    delete p2;
 
 
     return 0;

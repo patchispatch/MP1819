@@ -14,7 +14,6 @@
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
-#include <fstream>
 #include <string>
 #include <ctype.h>
 using namespace std;
@@ -42,7 +41,7 @@ public:
     Pelota & operator[](const int i);
     Pelota operator[](const int i) const;
 
-    friend ifstream &operator>>(ifstream &fi, Pelotas &p);
+    friend istream &operator>>(istream &fi, Pelotas &p);
 
 private:
     void redimensionar();
