@@ -8,61 +8,37 @@
 // **********************************************
 
 #include "miniwin.h"
-#include "Pelotas.h"
-#include <fstream>
-using namespace miniwin;
-using namespace std;
+#include "Simulador.h"
+
 
 int main() {
-    ifstream fi;
-    ofstream fo;
-    fi.open("./data/pelotas.txt");
-    string cabecera;
-    fi >> cabecera;
+    Simulador partida("data/pelotas.txt");
 
-    if(!fi) {
-        cerr << "hola" << endl;
-        return 2;
-    }
-
-    if(cabecera != "MP-PELOTAS-T-1.0") {
-        cerr << "error de lectura de fichero\n";
-        return 1;
-    }
-
-    int ancho;
-    fi >> ancho;
-    int alto;
-    fi >> alto;
-    vredimensiona(ancho, alto);
-
-    // Pelotas:
-    Pelotas p = Pelotas();
-    fi >> p;
-
-    //p.aniadir(*p1);
-    //p.aniadir(*p2);
-    cout << p[0].getRadio();
-    fo.open("data/salida.txt");
-
-    // Bucle de pintado:
     while (tecla() != ESCAPE) {
-        borra();
-        p.comprobarColisiones();
-        for(int i = 0; i < p.getUtil(); ++i) {
-            mover(p[i]);
-            pintar(p[i]);
-        }
-
-        refresca();
-        espera(25);
+        partida.step(1);
+        partida.pintar(25);
     }
 
-    fo << cabecera << "\n" << ancho << "\n" << alto << "\n";
-    fo << p;
+    bool ok = partida.salvar("data/salida.txt");
+    if(!ok) {
+        std::cerr << "Error de escritura.";
+    }
 
+    // Probar la sobrecarga de << de pelotas
+    Pelotas local = partida.getActual();
+    std::cout << "Estado final: \n";
+    std::cout << local;
 
-    // Cerrar la ventana:
-    vcierra();
+    Pelota p1 = partida.getOriginal()[0];
+    Pelota p2 = partida.getActual()[0];
+
+    std::cout << p1 << "\n" << p2 << "son:";
+    if(p1==p2)
+        std::cout << "iguales \n";
+    else
+        std::cout << "diferentes \n";
+    
+    std::cout << "\n!!!!! 1 obstaculo: " << std::endl;
+    
     return 0;
 }

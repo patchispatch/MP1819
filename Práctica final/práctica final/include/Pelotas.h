@@ -11,12 +11,12 @@
 #define PELOTAS_H
 
 #include "Pelota.h"
-#include <iostream>
+#include "utilidades.h"
 #include <cstring>
 #include <stdexcept>
 #include <string>
-#include <ctype.h>
 using namespace std;
+
 class Pelotas {
 private:
     Pelota * v;
@@ -35,7 +35,9 @@ public:
     void borrar(int i);
     Pelota obtener(int i);
 
-    Pelotas & operator=(Pelotas &otro);
+    void mover();
+
+    Pelotas & operator=(const Pelotas &otro);
     Pelotas & operator+=(Pelota &p);
 
     Pelota & operator[](const int i);

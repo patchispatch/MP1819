@@ -1,24 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Simulador.h
- * Author: patchispatch
- *
- * Created on 31 de mayo de 2019, 17:13
- */
+// **********************************************
+// METODOLOGÍA DE LA PROGRAMACIÓN
+// AUTORES: JUAN OCAÑA VALENZUELA
+//          AARÓN PADIAL VÁZQUEZ
+//
+// Simulador.cpp
+// Definición de la clase Simulador.
+// **********************************************
 
 #ifndef SIMULADOR_H
 #define SIMULADOR_H
 
+#include <string>
+#include <fstream>
+#include "Pelotas.h"
+using namespace std;
+using namespace miniwin;
+
 class Simulador {
+private:
+    int ancho, alto;
+    Pelotas original;
+    Pelotas actual;
+
 public:
-    Simulador();
-    Simulador(const Simulador& orig);
-    virtual ~Simulador();
+    Simulador(string path);
+    Simulador(const Simulador& otro);
+    ~Simulador();
+
+    void setActual(const Pelotas &p);
+    Pelotas getOriginal();
+    Pelotas getActual();
+
+    void step(int n);
+    bool salvar(string path);
+
+    void pintar(int seg);
+    
 private:
 
 };

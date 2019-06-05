@@ -39,7 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Pelotas.o \
 	${OBJECTDIR}/src/Simulador.o \
 	${OBJECTDIR}/src/main.o \
-	${OBJECTDIR}/src/miniwin.o
+	${OBJECTDIR}/src/miniwin.o \
+	${OBJECTDIR}/src/utilidades.o
 
 
 # C Compiler Flags
@@ -90,6 +91,11 @@ ${OBJECTDIR}/src/miniwin.o: src/miniwin.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/miniwin.o src/miniwin.cpp
+
+${OBJECTDIR}/src/utilidades.o: src/utilidades.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/utilidades.o src/utilidades.cpp
 
 # Subprojects
 .build-subprojects:

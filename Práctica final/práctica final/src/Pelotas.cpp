@@ -9,7 +9,7 @@
 
 #include "Pelotas.h"
 
-// Crea un objeto Pelotas con capacidad = c:
+// Crea un objeto Pelotas:
 Pelotas::Pelotas() {
     v = nullptr;
     capacidad = 0;
@@ -17,20 +17,7 @@ Pelotas::Pelotas() {
 }
 
 Pelotas::Pelotas(const Pelotas &otro) {
-    // Reservar array auxiliar:
-    Pelota * aux = new Pelota[otro.capacidad];
-
-    // Copiar datos:
-    memcpy(aux, otro.v, otro.capacidad * sizeof(Pelota));
-
-    // Liberar antiguo:
-    liberar();
-
-    // Asignar el nuevo:
-    v = aux;
-
-    capacidad = otro.capacidad;
-    util = otro.util;
+    *this = otro;
 }
 
 Pelotas::~Pelotas() {
@@ -64,6 +51,21 @@ void Pelotas::borrar(int b) {
     }
 }
 
+Pelota Pelotas::obtener(int i) {
+    if (i < 0 || i >= util) {
+        throw out_of_range("Indice fuera de rango en acceso con obtener()");
+    }
+    else
+        return v[i];
+}
+
+void Pelotas::mover() {
+    comprobarColisiones();
+    for(int i = 0; i < util; ++i) {
+        mover_pelota(v[i]);
+    }
+}
+
 void Pelotas::redimensionar() {
     // Reservar array auxiliar:
     Pelota * aux = new Pelota[capacidad + 1];
@@ -88,9 +90,23 @@ void Pelotas::liberar() {
     delete [] v;
 }
 
-Pelotas & Pelotas::operator=(Pelotas &otro) {
-    if (this != &otro)
-        *this = otro;
+Pelotas & Pelotas::operator=(const Pelotas &otro) {
+    if (this != &otro) {
+        // Reservar array auxiliar:
+        Pelota * aux = new Pelota[otro.capacidad];
+
+        // Copiar datos:
+        memcpy(aux, otro.v, otro.capacidad * sizeof(Pelota));
+
+        // Liberar antiguo:
+        liberar();
+
+        // Asignar el nuevo:
+        v = aux;
+
+        capacidad = otro.capacidad;
+        util = otro.util;
+    }
 
     return *this;
 }
@@ -135,7 +151,6 @@ void Pelotas::comprobarColisiones() {
                 }
                 else {
                     if(v[i].getColor() == PColor::VERDE) {
-                        cout << "BORRANDO" << endl;
                         borrar(i);
                     }
                     else
@@ -150,8 +165,7 @@ istream &operator>>(istream &fi, Pelotas &p)  {
     int contador;
     
     fi >> contador;
-
-    cout << contador << endl;
+    
     for(int i = 0; i < contador; i++)   {
         float nx, ny, vx, vy, r;
         PColor nc;
@@ -189,35 +203,8 @@ ostream &operator<<(ostream &fo, Pelotas &p)  {
     fo << p.util << endl;
 
     for(int i = 0; i < p.util; i++)   {
-
-        fo << p[i].getX() << " " << p[i].getY() << " " << p[i].getDX() << " " 
-        << p[i].getDY() << " " << p[i].getRadio() << " " ;
-
-        string nc;
-        PColor color = p[i].getColor();
-
-        if (color == PColor::NEGRO) 
-            nc = "NEGRO";
-        else if (color == PColor::ROJO)
-            nc = "ROJO";
-        else if (color == PColor::VERDE)
-            nc = "VERDE";
-        else if (color == PColor::AZUL)
-            nc = "AZUL";
-        else if (color == PColor::AMARILLO)
-            nc = "AMARILLO";
-        else if (color == PColor::MAGENTA)
-            nc = "MAGENTA";
-        else if (color == PColor::CYAN)
-            nc = "CYAN";
-        else if (color == PColor::BLANCO)
-            nc = "BLANCO";
-        else {
-            cerr << "Color mal" << endl;
-            exit(1);
-        }
-
-        fo << nc << "\n";
+        fo << p[i];
     }
+
     return fo;            
 }

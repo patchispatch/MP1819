@@ -104,29 +104,35 @@ bool Pelota::operator!=(const Pelota &otro) {
     return !(*this == otro);
 }
 
-void mover(Pelota &p) {
-    p.setX(p.getX() + p.getDX());
-    p.setY(p.getY() + p.getDY());
+ostream & operator<<(ostream &fo, Pelota &p) {
+    fo << p.x << " " << p.y << " " << p.dx << " " 
+    << p.dy << " " << p.radio << " " ;
 
-    if (p.getX() > miniwin::vancho() - p.getRadio()) {
-        p.setDX(-p.getDX() * FACTOR);
-        p.setX(miniwin::vancho() - p.getRadio());
-   } 
-	else if (p.getX() < p.getRadio()) {
-        p.setDX(-p.getDX() * FACTOR);
-        p.setX(p.getRadio());
-   } 
-	else if (p.getY() > miniwin::valto() - p.getRadio()) {
-        p.setDY(-p.getDY() * FACTOR);
-        p.setY(miniwin::valto() - p.getRadio());
-   } 
-	else if (p.getY() < p.getRadio()) {
-        p.setDY(-p.getDY() * FACTOR);
-        p.setY(p.getRadio());
-   }
-}
+    string nc;
+    PColor color = p.color;
 
-void pintar (const Pelota &p) {
-   miniwin::color((int) p.getColor());
-   miniwin::circulo_lleno(p.getX(), p.getY(), p.getRadio());
+    if (color == PColor::NEGRO) 
+        nc = "NEGRO";
+    else if (color == PColor::ROJO)
+        nc = "ROJO";
+    else if (color == PColor::VERDE)
+        nc = "VERDE";
+    else if (color == PColor::AZUL)
+        nc = "AZUL";
+    else if (color == PColor::AMARILLO)
+        nc = "AMARILLO";
+    else if (color == PColor::MAGENTA)
+        nc = "MAGENTA";
+    else if (color == PColor::CYAN)
+        nc = "CYAN";
+    else if (color == PColor::BLANCO)
+        nc = "BLANCO";
+    else {
+        cerr << "Color mal" << endl;
+        exit(1);
+    }
+
+    fo << nc << "\n";
+
+    return fo;
 }

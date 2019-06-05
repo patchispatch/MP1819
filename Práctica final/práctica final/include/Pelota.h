@@ -11,6 +11,8 @@
 #define PELOTA_H
 
 #include "definiciones.h"
+#include <fstream>
+using namespace std;
 
 class Pelota {
 private:
@@ -43,13 +45,13 @@ public:
     float distancia(const Pelota &otro);
     bool colisionado(const Pelota &otro);
     void colisionar(Pelota &otro);
+
     const Pelota & operator=(const Pelota &otro);
     bool operator==(const Pelota &otro);
     bool operator!=(const Pelota &otro);
-};
 
-void mover(Pelota &p);
-void pintar(const Pelota &p);
+    friend ostream &operator<<(ostream &fo, Pelota &p);
+};
 
 #endif /* PELOTA_H */
 
